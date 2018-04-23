@@ -1,0 +1,33 @@
+<template>
+    <!-- template里只能有一个根节点 -->
+    <div class="container">
+        <div class="iqipao"><slot></slot></div><img class="icon" src="../Common/user.png">
+    </div>
+</template>
+
+<style>
+    .container{
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        justify-content: flex-end;
+    }
+    .iqipao{
+        width: 40%;
+        background-color: #03a9f4;
+        border-radius: 10px;
+        padding: 5px,5px,8px,8px;
+    }
+    .icon{
+        margin-left: 10px;
+        width: 10%;
+    }
+</style>
+
+<script>
+    export default {
+        data: {
+          // title: '示例页面',
+        },
+    }
+</script>

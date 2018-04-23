@@ -1,0 +1,25 @@
+<template>
+    <!-- template里只能有一个根节点 -->
+    <div class="container">
+        <img class="icon" src="../Common/robot.png"><div class="iqipao"><slot></slot></div>
+    </div>
+</template>
+
+<style>
+    .container{
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        justify-content: flex-start;
+    }
+    .iqipao{
+        width: 40%;
+        background-color: #03a9f4;
+        border-radius: 10px;
+        padding: 5px,5px,8px,8px;
+    }
+    .icon{
+        margin-right: 10px;
+        width: 10%;
+    }
+</style>

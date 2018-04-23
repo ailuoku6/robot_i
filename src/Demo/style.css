@@ -1,0 +1,53 @@
+  .demo-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tab-bar{
+    background-color: #03a9f4;
+    top: 0;
+    height: 120px;
+    width: 100%
+  }
+
+  .bottom-bar{
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    background-color:#f0f3f6;
+  }
+ 
+  .text{
+    color: #f0f3f6;
+  }
+  #input-bar{
+    margin-left: 20px;
+    height: 100%;
+    width: 75%;
+  }
+
+  .sendbutton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 25%;
+  }
+
+  #sendimg{
+    height: 50%;
+  }
+
+  #return-content{
+    height: 50px;
+    width: 100%;
+    background-color: aqua;
+  }
+  #pagelist-item{
+      width: 100%;
+  }
+  #pagelist{
+    width: 100%;
+    margin-bottom: 100px;
+  }

@@ -1,0 +1,80 @@
+<import name='isay' src='./isay'></import>
+<import name='shesay' src='./shesay'></import>
+<template>
+  <!-- template里只能有一个根节点 -->
+  <div class="demo-page">
+    <list id="pagelist">
+        <list-item type="dialog_l" id="pagelist-item">
+            <shesay><text class="text">小主人好！我是机器人小i</text></shesay>
+        </list-item>
+        <block for="value in dialoguelist">
+          <list-item type="dialog_r" id="pagelist-item">
+              <isay><text class="text">{{value.isay}}</text></isay>
+          </list-item>
+          <list-item type="dialog_l">
+              <shesay if="{{value.shesay}}"><text class="text">{{value.shesay}}</text></shesay>
+          </list-item>
+        </block>
+    </list>
+    <div class="bottom-bar">
+      <input type="text" id="input-bar" placeholder="input some text" value="{{inputdata}}" onchange="inputChanged">
+      <div class="sendbutton" onclick="requestdata"><img src="../Common/send.png" id="sendimg"></div>
+    </div>
+  </div>
+</template>
+
+<style src="./style.css"></style>
+
+<script>
+  import router from '@system.router'
+  import fetch from '@system.fetch'
+  import prompt from '@system.prompt'
+
+  export default {
+    data: {
+      inputdata:'',
+      dialoguelist:[],
+      dialogindex:0
+    },
+    
+    onMenuPress() {
+      this.$app.showMenu()
+    },
+    inputChanged(input) {
+      this.inputdata= input.value;
+    },
+
+    requestdata(){
+      var self = this;
+      var input_bar = self.$element('input-bar');
+      var formdata = {
+        key: "278d857fc8cd48419ceb23f70013867a",
+				loc: "",
+				info: self.inputdata,
+				userid: "808675"
+      };
+      var newdata = {isay:self.inputdata,shesay:""};
+      self.dialoguelist.push(newdata);
+      self.dialogindex++;
+      fetch.fetch({
+        url:"http://www.tuling123.com/openapi/api",
+        method:"POST",
+        data:formdata,
+        success:function(data){
+          self.dialoguelist[self.dialoguelist.length-1].shesay = JSON.parse(data.data).text;
+        },
+        fail: function(data, code) {
+          console.log("handling fail, code=" + code);
+        }
+      })
+      self.inputdata = new String("");
+      self.dialogindex++;
+      self.$element('pagelist').scrollTo({
+          index: 0,
+      })
+      // console.log(input_bar);
+      // console.log(input_bar.value);
+      console.log(self.dialogindex);
+    }
+  }
+</script>
